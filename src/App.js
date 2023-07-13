@@ -9,6 +9,8 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Recovery from './components/Recovery';
 import Reset from './components/Reset';
+import { Dassboard } from './components/Dassboard';
+import { Additems } from './components/Additems';
 import PageNotFound from './components/PageNotFound';
 
 
@@ -18,39 +20,47 @@ import { AuthorizeUser, ProtectRoute } from './middleware/auth'
 /** root routes */
 const router = createBrowserRouter([
     {
-        path : '/',
-        element : <Username></Username>
+        path: '/',
+        element: <Username></Username>
     },
     {
-        path : '/register',
-        element : <Register></Register>
+        path: '/dashbord',
+        element: <Dassboard />
     },
     {
-        path : '/password',
-        element : <ProtectRoute><Password /></ProtectRoute>
+        path: '/additem',
+        element: <Additems />
     },
     {
-        path : '/profile',
-        element : <AuthorizeUser><Profile /></AuthorizeUser>
+        path: '/register',
+        element: <Register></Register>
     },
     {
-        path : '/recovery',
-        element : <Recovery></Recovery>
+        path: '/password',
+        element: <ProtectRoute><Password /></ProtectRoute>
     },
     {
-        path : '/reset',
-        element : <Reset></Reset>
+        path: '/profile',
+        element: <AuthorizeUser><Profile /></AuthorizeUser>
     },
     {
-        path : '*',
-        element : <PageNotFound></PageNotFound>
+        path: '/recovery',
+        element: <Recovery></Recovery>
+    },
+    {
+        path: '/reset',
+        element: <Reset></Reset>
+    },
+    {
+        path: '*',
+        element: <PageNotFound></PageNotFound>
     },
 ])
 
 export default function App() {
-  return (
-    <main>
-        <RouterProvider router={router}></RouterProvider>
-    </main>
-  )
+    return (
+        <main>
+            <RouterProvider router={router}></RouterProvider>
+        </main>
+    )
 }

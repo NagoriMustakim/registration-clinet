@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
+axios.defaults.baseURL = process.env.REACT_APP_DEV_SERVER;
 
 
 /** Make API Requests */
@@ -38,18 +38,18 @@ export async function getUser({ username }) {
 /** register user function */
 export async function registerUser(credentials) {
     try {
-        const { data: { msg }, status } = await axios.post(`/api/v1/register`, credentials);
+        const { data: { message }, status } = await axios.post(`/api/v1/register`, credentials);
 
         let { username, email } = credentials;
-
+        // console.log(message);
         /** send email */
         if (status === 201) {
-            await axios.post('/api/v1/registermail', { username, userEmail: email, text: msg })
+            await axios.post('/api/v1/registermail', { username, userEmail: email, text: message })
         }
 
-        return Promise.resolve(msg)
+        return message
     } catch (error) {
-        return Promise.reject({ error })
+        return error
     }
 }
 
